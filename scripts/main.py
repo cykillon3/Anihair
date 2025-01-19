@@ -2,6 +2,8 @@ import bpy
 
 panel = bpy.types.Panel
 
+
+
 category_name = "AniHair"
 
 class main_panel(panel):
@@ -15,16 +17,10 @@ class main_panel(panel):
         layout = self.layout
         
         row = layout.row()
-        row.label(text="Hello world!", icon='WORLD_DATA')
-        
+        row.label(text="AniHair Menu", icon='IPO_EASE_IN')
         row = layout.row()
-        row.operator("wm.open_url", text="Open Blender", icon='WORLD_DATA').url = "https://www.blender.org/"
+        row.operator("create_curve.curve_operator", icon='CURVE_DATA')
         
-        row = layout.row()
-        row.operator("wm.open_url", text="Open Google", icon='WORLD_DATA').url = "https://www.google.com/"
-        
-        row = layout.row()
-        row.operator("wm.open_url", text="Open Youtube", icon='WORLD_DATA').url = "https://www.youtube.com/"
-        
-        row = layout.row()
-        row.operator("wm.open_url", text="Open Github", icon='WORLD_DATA').url = "https://www.github.com/"
+
+
+    
