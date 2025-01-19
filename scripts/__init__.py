@@ -15,7 +15,7 @@ import bpy
 from .main import *
 from .operators import *
 
-classes = (main_panel, create_curve)
+classes = (main_panel, create_curve, edit_curve,)
 
 
 
@@ -27,3 +27,4 @@ def register():
 def unregister():
     for cls in classes:
         bpy.utils.unregister_class(cls)
+        

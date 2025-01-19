@@ -20,6 +20,12 @@ class main_panel(panel):
         row.label(text="AniHair Menu", icon='IPO_EASE_IN')
         row = layout.row()
         row.operator("create_curve.curve_operator", icon='CURVE_DATA')
+        row = layout.row()
+        row.operator("edit_curve.curve_operator01", icon='CURVE_DATA')
+
+
+
+        
         
 
 
