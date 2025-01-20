@@ -31,6 +31,8 @@ class create_curve(operator):
         hair_strand.data.bevel_mode = 'OBJECT'
         hair_strand.data.bevel_object = hair_shape
         hair_strand.data.splines[0].resolution_u = 3
+        
+        self.report({'INFO'}, f'hair strand {hair_id} created')
 
         return {"FINISHED"}
 
@@ -60,11 +62,35 @@ class edit_curve(operator):
                 bpy.ops.object.mode_set(mode='OBJECT')
             
             # Set the mode to 'EDIT'
-            bpy.ops.object.mode_set(mode='EDIT')
-            bpy.ops.view3d.view_axis(type='FRONT', align_active=False)
-            bpy.context.space_data.region_3d.view_perspective = 'ORTHO'
+            if bpy.context.object and bpy.context.object.type == 'CURVE' and bpy.context.object.data.splines[0].type == 'BEZIER':
+                bpy.ops.object.mode_set(mode='EDIT')
+                bpy.ops.view3d.view_axis(type='FRONT', align_active=False)
+                bpy.context.space_data.region_3d.view_perspective = 'ORTHO'
+            else:
+                self.report({'INFO'}, 'Please select a hair shape object')
 
         return {"FINISHED"}
 
+class convert_curve(operator):
+    bl_idname = "convert_curve.curve_operator02"
+    bl_label = "Convert hair to mesh"
+    bl_description = "Converts hair to mesh"
+    bl_options = {"REGISTER", "UNDO"}
+    
+    @classmethod
+    def poll(cls, context):
+        return True
+    
+    def execute(self, context):
+        # Deselect all objects
+        bpy.ops.object.select_all(action='DESELECT')
 
+        # Select all NURBS curves
+        for obj in bpy.data.objects:
+            if obj.type == 'CURVE' and obj.data.splines[0].type == 'NURBS':
+                obj.select_set(True)
 
+        # Convert selected NURBS curves to mesh
+        bpy.ops.object.convert(target='MESH')
+        
+        return {"FINISHED"}

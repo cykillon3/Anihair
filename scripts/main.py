@@ -22,6 +22,8 @@ class main_panel(panel):
         row.operator("create_curve.curve_operator", icon='CURVE_DATA')
         row = layout.row()
         row.operator("edit_curve.curve_operator01", icon='CURVE_DATA')
+        row = layout.row()
+        row.operator("convert_curve.curve_operator02", icon='CURVE_DATA')
 
 
 

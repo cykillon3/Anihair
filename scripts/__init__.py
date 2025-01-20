@@ -15,7 +15,7 @@ import bpy
 from .main import *
 from .operators import *
 
-classes = (main_panel, create_curve, edit_curve,)
+classes = (main_panel, create_curve, edit_curve, convert_curve,)
 
 
 
