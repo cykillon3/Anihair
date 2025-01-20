@@ -18,12 +18,13 @@ class create_curve(operator):
         
         hair_id = len(bpy.data.objects)
         
+        # spawns a new bezier circle
         bpy.ops.curve.primitive_bezier_circle_add(rotation=(1.5708, 0, 0))
         hair_shape = bpy.context.object
         hair_shape.name = f"Hair Shape{hair_id}"
         hair_shape.data.resolution_u = 5
         
-        
+        # spawns a new nurbs path
         bpy.ops.curve.primitive_nurbs_path_add(location=(3, 0, 0), rotation=(0, 0, 1.5708))
         hair_strand = bpy.context.object
         hair_strand.name = f"Hair Strand{hair_id}"
