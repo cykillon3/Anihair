@@ -9,7 +9,7 @@ This addon allows you to create custom anime style hair in blender.
 
 # Installation:
 
-1. Download the files as .zip
+1. [Download](https://github.com/cykillon3/Anihair/archive/refs/heads/main.zip) the files as .zip
 2. Go to blender > Edit > Prefrences > Add-ons > Click the arrow on top-right corner > Install from local disk > Locate your .zip file and install.
 3. Restart Blender if the addon doesn't show up after installation.
 
