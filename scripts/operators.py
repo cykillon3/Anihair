@@ -33,6 +33,7 @@ class create_curve(operator):
         hair_strand.data.bevel_object = hair_shape
         hair_strand.data.splines[0].resolution_u = 3
         bpy.ops.transform.resize(value=(1, 1, 0.1))
+        bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
         
         
         self.report({'INFO'}, f'hair strand {hair_id} created')
