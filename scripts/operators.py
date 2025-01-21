@@ -18,13 +18,13 @@ class create_curve(operator):
         
         hair_id = len(bpy.data.objects)
         
-        # spawns a new bezier circle
+        # Spawn a new bezier circle
         bpy.ops.curve.primitive_bezier_circle_add(rotation=(1.5708, 0, 0))
         hair_shape = bpy.context.object
         hair_shape.name = f"Hair Shape{hair_id}"
         hair_shape.data.resolution_u = 5
         
-        # spawns a new nurbs path
+        # Spawn a new nurbs path
         bpy.ops.curve.primitive_nurbs_path_add(location=(3, 0, 0), rotation=(0, 0, 1.5708))
         hair_strand = bpy.context.object
         hair_strand.name = f"Hair Strand{hair_id}"
@@ -72,6 +72,33 @@ class edit_curve(operator):
 
         return {"FINISHED"}
 
+class add_mirror_modifier(operator):
+    bl_idname = "add_mirror_modifier.curve_operator03"
+    bl_label = "Add mirror modifier"
+    bl_description = "Adds a mirror modifier to the hair"
+    bl_options = {"REGISTER", "UNDO"}
+    
+    @classmethod
+    def poll(cls, context):
+        return True
+    
+    def execute(self, context):
+        # Deselect all objects
+        bpy.ops.object.select_all(action='DESELECT')
+
+        active_object = bpy.context.view_layer.objects.active
+        
+        if active_object and active_object.type == 'CURVE' and active_object.data.splines[0].type == 'NURBS':
+            active_object.select_set(True)
+            bpy.ops.object.modifier_add(type='MIRROR')
+            bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+            self.report({'INFO'}, 'Mirror modifier added to the hair')
+            return {"FINISHED"}
+        else:
+            self.report({'WARNING'}, 'Please select a Hair strand object first')
+            return {"CANCELLED"}
+            
+
 class convert_curve(operator):
     bl_idname = "convert_curve.curve_operator02"
     bl_label = "Convert hair to mesh"
@@ -86,12 +113,26 @@ class convert_curve(operator):
         # Deselect all objects
         bpy.ops.object.select_all(action='DESELECT')
 
+        try:
         # Select all NURBS curves
-        for obj in bpy.data.objects:
-            if obj.type == 'CURVE' and obj.data.splines[0].type == 'NURBS':
-                obj.select_set(True)
+            nurbs_selected = False
+            for obj in bpy.data.objects:
+                if obj.type == 'CURVE' and obj.data.splines[0].type == 'NURBS':
+                    obj.select_set(True)
+                    nurbs_selected = True
 
-        # Convert selected NURBS curves to mesh
-        bpy.ops.object.convert(target='MESH')
-        
+            # Ensure we are in object mode
+            if bpy.context.object and bpy.context.object.mode != 'OBJECT':
+                bpy.ops.object.mode_set(mode='OBJECT')
+
+            # Convert selected NURBS curves to mesh if any are selected
+            if nurbs_selected:
+                bpy.ops.object.convert(target='MESH')
+                self.report({'INFO'}, 'NURBS curves converted to mesh')
+            else:
+                self.report({'WARNING'}, 'No NURBS curves found to convert')
+                
+        except RuntimeError:
+            self.report({'ERROR'}, 'Please select a Hair strand object first')
+
         return {"FINISHED"}

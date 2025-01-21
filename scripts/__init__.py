@@ -4,7 +4,7 @@ import bpy
 from .main import *
 from .operators import *
 
-classes = (main_panel, create_curve, edit_curve, convert_curve,)
+classes = (main_panel, create_curve, edit_curve, convert_curve, add_mirror_modifier, patreon_panel)
 
 
 
