@@ -7,6 +7,8 @@ This addon allows you to create custom anime style hair in blender.
 # This addon is still under development. Please open an issue if you face any bugs or problems ⚠️.
 
 
+# Join our [**Discord**](https://discord.gg/RNYSBDGyxC)
+
 # Installation:
 
 1. **[Download](https://github.com/cykillon3/Anihair/archive/refs/heads/main.zip)** the files as .zip
