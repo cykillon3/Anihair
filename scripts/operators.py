@@ -7,7 +7,7 @@ operator = bpy.types.Operator
 class create_curve(operator):
     bl_idname = "create_curve.curve_operator"
     bl_label = "Create new hair"
-    bl_description = "Creates a new hair"
+    bl_description = "Creates a new hair strand"
     bl_options = {"REGISTER"}
 
     @classmethod
@@ -45,7 +45,7 @@ class edit_curve(operator):
     bl_idname = "edit_curve.curve_operator01"
     bl_label = "Edit hair"
     
-    bl_description = "Edits created hair"
+    bl_description = "Edits created the selected hair strand"
     bl_options = {"REGISTER", "UNDO"}
 
     @classmethod
@@ -78,7 +78,7 @@ class edit_curve(operator):
 class add_mirror_modifier(operator):
     bl_idname = "add_mirror_modifier.curve_operator03"
     bl_label = "Add mirror modifier"
-    bl_description = "Adds a mirror modifier to the hair"
+    bl_description = "Adds a mirror modifier to the selected hair strand"
     bl_options = {"REGISTER", "UNDO"}
     
     @classmethod
@@ -104,8 +104,8 @@ class add_mirror_modifier(operator):
 
 class convert_curve(operator):
     bl_idname = "convert_curve.curve_operator02"
-    bl_label = "Convert hair to mesh"
-    bl_description = "Converts hair to mesh"
+    bl_label = "Convert all hair to mesh"
+    bl_description = "Converts all hair strands to mesh"
     bl_options = {"REGISTER", "UNDO"}
     
     @classmethod

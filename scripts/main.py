@@ -25,7 +25,7 @@ class main_panel(panel):
         row = layout.row()
         row.operator("add_mirror_modifier.curve_operator03", icon='MOD_MIRROR')
         row = layout.row()
-        row.operator("convert_curve.curve_operator02", icon='CURVE_DATA')
+        row.operator("convert_curve.curve_operator02", icon='MESH_DATA')
 
 class patreon_panel(panel):
     bl_label = "Credits"
