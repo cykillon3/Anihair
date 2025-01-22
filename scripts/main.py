@@ -42,6 +42,10 @@ class patreon_panel(panel):
         row.label(text="💟 Become a patron",)
         row = layout.row()
         row.operator("wm.url_open", text="Patreon 💖").url = "https://www.patreon.com/CYkillon3"
+        row = layout.row()
+        row.operator("wm.url_open", text="Join our Discord 💬").url = "https://discord.gg/RNYSBDGyxC"
+        
+        
         
         row = layout.row()
         row.label(text="CY's Army:")
