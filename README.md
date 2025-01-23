@@ -17,5 +17,5 @@ This addon allows you to create custom anime style hair in blender.
 
 # Tutorial
 
-Watch the tutorial on [YouYube](https://www.youtube.com/watch?v=hJ_X0nftFng)
+Watch the tutorial on [YouTube](https://www.youtube.com/watch?v=hJ_X0nftFng)
 
