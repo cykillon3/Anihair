@@ -1,5 +1,17 @@
 
 
+bl_info = {
+    "name": "AniHair",
+    "author": "Cykillon3",
+    "description": "",
+    "blender": (2, 80, 0),
+    "version": (0, 0, 1),
+    "location": "",
+    "warning": "",
+    "category": "addon",
+}
+
+
 import bpy
 from .main import *
 from .operators import *
